@@ -130,34 +130,62 @@ query = st.text_input(
     "💬 Ask a question about the program (e.g., What is the capstone project about?)", 
     key="query_input"
 )
-
 if query and query != st.session_state.last_query:
-    # Update last query
     st.session_state.last_query = query
-    
-    # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": query})
 
     with st.spinner("🤖 Thinking..."):
-        response = requests.post(
-            "https://uchicagoadsragassistant.onrender.com/query",
-            json={"question": query}
-        )
-        if response.status_code == 200:
+        try:
+            response = requests.post(
+                "https://uchicagoadsragassistant.onrender.com/query",
+                json={"question": query},
+                timeout=15  # ⏰ 실패 방지를 위한 타임아웃도 추가 가능
+            )
+            response.raise_for_status()  # 🚨 HTTP 4xx/5xx 예외 발생
+
             data = response.json()
             answer = data.get("answer", "No response available.")
-            
-            # Add assistant response to chat history
+            sources = data.get("sources", [])
+
             st.session_state.messages.append({"role": "assistant", "content": answer})
-            
-            # Keep only the last 4 messages
+
             if len(st.session_state.messages) > 4:
                 st.session_state.messages = st.session_state.messages[-4:]
-            
-            # Rerun to update the display
+
             st.rerun()
-        else:
-            st.error("⚠️ Failed to retrieve an answer. Please try again later.")
+
+        except requests.exceptions.RequestException as e:
+            st.error(f"⚠️ Request failed: {e}")
+        except Exception as e:
+            st.error(f"⚠️ An unexpected error occurred: {e}")
+
+# if query and query != st.session_state.last_query:
+#     # Update last query
+#     st.session_state.last_query = query
+    
+#     # Add user message to chat history
+#     st.session_state.messages.append({"role": "user", "content": query})
+
+#     with st.spinner("🤖 Thinking..."):
+#         response = requests.post(
+#             "https://uchicagoadsragassistant.onrender.com/query",
+#             json={"question": query}
+#         )
+#         if response.status_code == 200:
+#             data = response.json()
+#             answer = data.get("answer", "No response available.")
+            
+#             # Add assistant response to chat history
+#             st.session_state.messages.append({"role": "assistant", "content": answer})
+            
+#             # Keep only the last 4 messages
+#             if len(st.session_state.messages) > 4:
+#                 st.session_state.messages = st.session_state.messages[-4:]
+            
+#             # Rerun to update the display
+#             st.rerun()
+#         else:
+#             st.error("⚠️ Failed to retrieve an answer. Please try again later.")
 elif not st.session_state.messages:
     st.markdown(
         """
