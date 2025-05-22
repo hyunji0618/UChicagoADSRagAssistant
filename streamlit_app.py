@@ -140,7 +140,7 @@ if query and query != st.session_state.last_query:
 
     with st.spinner("🤖 Thinking..."):
         response = requests.post(
-            "https://uchicagoadsragassistant.onrender.com",
+            "https://uchicagoadsragassistant.onrender.com/query",
             json={"question": query}
         )
         if response.status_code == 200:
