@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-import streamlit as st
+import os
 
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -29,7 +29,7 @@ db = Chroma(persist_directory="./chroma_db", embedding_function=embedding_model)
 retriever = db.as_retriever(search_kwargs={"k": 3})
 
 # Perplexity API Key
-PERPLEXITY_API_KEY = st.secrets["PERPLEXITY_API_KEY"]
+PERPLEXITY_API_KEY = os.environ["PERPLEXITY_API_KEY"]
 # Load Perplexity LLM (now using ChatPerplexity)
 llm = ChatPerplexity(
     model="llama-3.1-sonar-large-128k-online", # Choose a suitable model, like "llama-3-8b-instruct" or "mixtral-8x7b-instruct"
