@@ -139,9 +139,9 @@ if query and query != st.session_state.last_query:
             response = requests.post(
                 "https://uchicagoadsragassistant.onrender.com/query",
                 json={"question": query},
-                timeout=15  # ⏰ 실패 방지를 위한 타임아웃도 추가 가능
+                timeout=15  
             )
-            response.raise_for_status()  # 🚨 HTTP 4xx/5xx 예외 발생
+            response.raise_for_status()  
 
             data = response.json()
             answer = data.get("answer", "No response available.")
@@ -186,6 +186,7 @@ if query and query != st.session_state.last_query:
 #             st.rerun()
 #         else:
 #             st.error("⚠️ Failed to retrieve an answer. Please try again later.")
+
 elif not st.session_state.messages:
     st.markdown(
         """
