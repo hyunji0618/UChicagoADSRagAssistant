@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+langchain
+langchain-chroma
+langchain-huggingface
+langchain-perplexity
+transformers
+pydantic
+python-dotenv
