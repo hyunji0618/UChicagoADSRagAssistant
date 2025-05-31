@@ -53,6 +53,7 @@ async def query(req: QueryRequest):
     
     docs = retriever.get_relevant_documents(question)
     context = "\n".join([doc.page_content for doc in docs])
+    context += "The professor for Generative AI Principles course is Dr. Fouad Bousetouane. The program director is Greg Green."
 
     # Construct the RAG prompt using ChatPromptTemplate
     # Chat models typically prefer structured messages (system, human, AI)
@@ -67,7 +68,7 @@ If the prompt/question is unclear, politely ask for clarification and don't try 
 """
             ),
             HumanMessage(
-                content=f"""[CONTEXT]
+                content="""[CONTEXT]
 {context}
 
 [QUESTION]
