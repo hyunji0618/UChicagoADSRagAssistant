@@ -43,17 +43,10 @@ class QueryRequest(BaseModel):
 
 @app.post("/query")
 async def query(req: QueryRequest):
-    question = req.question.strip().lower()
+    question = req.question
 
-    if "generative ai principles" in question and "professor" in question:
-        return {
-            "answer": "The professor for Generative AI Principles course is Dr. Fouad Bousetouane.",
-            "sources": ["hardcoded"]
-        }
-    
     docs = retriever.get_relevant_documents(question)
     context = "\n".join([doc.page_content for doc in docs])
-    context += "The professor for Generative AI Principles course is Dr. Fouad Bousetouane. The program director is Greg Green."
 
     # Construct the RAG prompt using ChatPromptTemplate
     # Chat models typically prefer structured messages (system, human, AI)
@@ -68,7 +61,7 @@ If the prompt/question is unclear, politely ask for clarification and don't try 
 """
             ),
             HumanMessage(
-                content="""[CONTEXT]
+                content=f"""[CONTEXT]
 {context}
 
 [QUESTION]
