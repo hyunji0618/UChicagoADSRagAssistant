@@ -139,7 +139,7 @@ if query and query != st.session_state.last_query:
             response = requests.post(
                 "https://uchicagoadsragassistant.onrender.com/query",
                 json={"question": query},
-                timeout=15  
+                timeout=30 
             )
             response.raise_for_status()  
 
