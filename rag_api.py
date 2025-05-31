@@ -43,7 +43,7 @@ class QueryRequest(BaseModel):
 
 @app.post("/query")
 async def query(req: QueryRequest):
-    question = req.question
+    question = req.question.strip().lower()
 
     if "Generative AI Principles" in question and "professor" in question:
         return {
