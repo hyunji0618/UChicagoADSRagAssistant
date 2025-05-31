@@ -45,7 +45,7 @@ class QueryRequest(BaseModel):
 async def query(req: QueryRequest):
     question = req.question.strip().lower()
 
-    if "Generative AI Principles" in question and "professor" in question:
+    if "generative ai principles" in question and "professor" in question:
         return {
             "answer": "The professor for Generative AI Principles course is Dr. Fouad Bousetouane.",
             "sources": ["hardcoded"]
