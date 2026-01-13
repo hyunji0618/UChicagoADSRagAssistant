@@ -4,7 +4,6 @@
 
 An interactive Retrieval-Augmented Generation (RAG) chatbot designed to help prospective students, current students, and alumni easily navigate and understand the **MS in Applied Data Science (MSADS)** program at the **University of Chicago**.
 
----
 
 ## 🔍 Project Motivation
 
@@ -18,7 +17,6 @@ Build a conversational AI assistant that:
 * Retrieves the most relevant program information
 * Delivers clear, grounded, and contextual answers
 
----
 
 ## ✨ Key Features
 
@@ -28,7 +26,6 @@ Build a conversational AI assistant that:
 * 🖥 **Interactive web UI** (Streamlit-based)
 * 🧠 Designed for **students, applicants, and alumni**
 
----
 
 ## 🧠 System Architecture
 
@@ -58,7 +55,6 @@ Build a conversational AI assistant that:
   * Vector DB context (internal knowledge)
   * Perplexity API for **external web grounding**
 
----
 
 ## 🧩 Tech Stack
 
@@ -71,7 +67,6 @@ Build a conversational AI assistant that:
 | Frontend        | Streamlit                               |
 | Evaluation      | Manual human review                     |
 
----
 
 ## 💡 Example Use Cases
 
@@ -80,7 +75,6 @@ Build a conversational AI assistant that:
 * “What is the recommended course progression for part-time students?”
 * “What background is expected for admission?”
 
----
 
 ## 📊 Evaluation
 
@@ -107,7 +101,6 @@ Assess answer quality in terms of:
 * Responses were generally fluent and relevant
 * Occasional grounding gaps when source coverage was incomplete
 
----
 
 ## 🚀 Future Work
 
@@ -117,7 +110,6 @@ Assess answer quality in terms of:
 * Improve grounding consistency across subpages
 * Potential deployment for official program support
 
----
 
 ## 👥 Team
 
@@ -129,9 +121,3 @@ Assess answer quality in terms of:
 * Karim
 * Maxine
 
----
-
-## 📄 References
-
-* Madaan, D. & Ramamurthy, S. (2024). *The LLM Engineers’ Handbook*.
-  [https://www.llmhandbook.ai](https://www.llmhandbook.ai) 
